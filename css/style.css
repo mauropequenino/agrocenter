@@ -29,7 +29,7 @@ h5 {
 /*--------- header -------- */
 
 #header {
-    height: 100vh;
+    /* height: 100vh; */
     padding: 85px 0 70px 0px;
     background-color: #f4f5ff;
 }
@@ -66,6 +66,11 @@ h5 {
     color: #306844;
 }
 
+.product-category-title {
+    border-left: 5px solid #306844;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
 
 .custom-card {
     border-radius: 20px;
@@ -107,6 +112,30 @@ h5 {
 }
 
 
+@media (max-width: 768px) { 
+    .hero-text {
+        text-align: center;
+    }
+
+    .hero-text h4 {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    
+    .hero-text h1 {
+        font-size: 32px;
+    }
+
+    .menu  {
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+}
+
+
 /* ================ LOGIN =================   */
 .login {
     height: 100vh;
@@ -136,4 +165,9 @@ h5 {
 
 #sidebar-menu li a:hover {
     color: #306844;
+}
+
+/*==================== SEARCH ================= */
+#search-cont {
+    margin-top: 120px;
 }
