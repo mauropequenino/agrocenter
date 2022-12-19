@@ -59,9 +59,14 @@
                     <div
                       class="d-flex justify-content-between flex-wrap flex-md-nowrap border-bottom"> 
                         <div class="column-1 me-5">
-                            <div class="col-md-12">
-                                <label for="categoria" class="form-label"><b>Categoria</b></label>
-                                <select class="form-select w-100" id="categoria" name="categoria" required>
+                            <div class="col-md-12 mt-3">
+                                <label for="produto" class="form-label"><b>Nome do Produto</b></label>
+                                <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Insira o nome do produto" required>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="category" class="form-label"><b>Categoria</b></label>
+                                <select class="form-select w-100" id="category" name="category" required>
                                     <option selected disabled value="">Escolha a categoria do produto</option>
                                     <?php foreach ($categoriasData as $row) { ?>
                                         <option value="<?php echo $row['Codigo']; ?>"><?php echo $row['Descricao']; ?></option>
@@ -70,23 +75,13 @@
                             </div>
                     
                             <div class="col-md-12 mt-3">
-                                <label for="produto" class="form-label"><b>Nome do Produto/b></label>
-                                <select class="form-select w-100" id="produto" name="produto" required>
-                                    <option selected disabled value="">Escolha do produto</option>
-                                    <?php foreach ($produtosData as $row) { ?>
-                                        <option value="<?php echo $row['ProdutoId']; ?>"><?php echo $row['nome']; ?></option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                    
-                            <div class="col-md-12 mt-3">
-                                <label for="preco" class="form-label"><b>Preço do Produto</b></label>
-                                <input type="number" class="form-control" id="preco" name="preco" placeholder="Insira o Preço" required>
+                                <label for="price" class="form-label"><b>Preço do Produto</b></label>
+                                <input type="number" class="form-control" id="price" name="price" placeholder="Insira o Preço" required>
                             </div>
                     
                             <div class="col-md-12 mt-3">
                                 <label for="unidade" class="form-label"><b>Unidade de Medida</b></label>
-                                <select class="form-select w-100" id="unidade" name="unidade" required>
+                                <select class="form-select w-100" id="unit" name="unit" required>
                                     <option selected disabled value="">Escolha a quantidade</option>
                                     <option value="gramas">Gramas</option>
                                     <option value="kg">Kilogramas (kg)</option>
@@ -95,6 +90,7 @@
                                     <option value="outros">Outro</option>
                                 </select>
                             </div>
+
                             <div class="col-md-12 mt-3">
                                 <input type="checkbox" id="Esgotado" name="Esgotado" value="0">
                                 <label for="Esgotado" class="form-label"><b>Esgotado</b></label>
@@ -102,13 +98,12 @@
 
                             <div class="col-md-12 mt-3">
                                 <label for="datainicio">Data inicial</label>
-                                <input type="date" id="datainicio" name="datainicio">
-                    
+                                <input type="date" id="datestart" name="datainicio">
                             </div>
-                            <div class="col-md-12 mt-3">
-                    
+
+                            <div class="col-md-12 mt-3">                  
                                 <label for="datafim">Data Final</label>
-                                <input type="date" id="datafim" name="datafim">
+                                <input type="date" id="dateend" name="datafim">
                             </div>
                         </div>
 
@@ -123,20 +118,20 @@
                                     <?php } ?>
                                 </select>
                             </div>
+
                             <div class="col-md-12 mt-3">
-                                <label for="cidade" class="form-label"><b>Cidade</b></label>
-                                <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Insira a cidade" required>
+                                <label for="city" class="form-label"><b>Cidade</b></label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Insira a cidade" required>
                             </div>
                     
                             <div class="col-md-12 mt-3">
-                                <label for="descricao" class="form-label"> <b>Descrição do Produto:</b></label>
-                                <textarea type="text" name="descricao" class="form-control" id="descricao" placeholder="Descreva o Produto"></textarea>
+                                <label for="description" class="form-label"> <b>Descrição do Produto:</b></label>
+                                <textarea type="text" name="description" class="form-control" id="description" placeholder="Descreva o Produto"></textarea>
                             </div>
                     
-                    
                             <div class="col-md-12 mt-3">
-                                <label for="foto" class="form-label"> <b>Seleccionar imagem:</b></label>
-                                <input type="file" id="foto" class="form-control" name="foto" accept="image/*">
+                                <label for="photo" class="form-label"> <b>Seleccionar imagem:</b></label>
+                                <input type="file" id="photo" class="form-control" name="photo" accept="image/*">
                             </div>
                     
                             <div class="col-12 mt-3">

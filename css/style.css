@@ -26,6 +26,33 @@ h5 {
     font-weight: 700;
 }
 
+
+/*---------- message --------- */
+
+.msg-container {
+    padding: 15px;
+}
+
+.msg {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px 10px;
+    border: solid 1px #000;
+    text-align: center;
+}
+
+.msg.error {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
+
+.msg.success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+}
+
 /*--------- header -------- */
 
 #header {

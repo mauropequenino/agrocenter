@@ -1,50 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgroCenter</title>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/style.css">
-    <!----font awesome---->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
-</head>
-<body>
-    <!--- header section inicio -->
-    <header id="header">
-        <!-- Navegation inicio -->
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow custom-navbar">
-            <div class="container container-fluid">
-                <div class="navbar-header">
-                    <a href="/index.html" class="navbar-brand float-end logo">
-                        <i class="fas fa-leaf"></i>
-                        <span>AgroCenter</span>
-                    </a>
-                    <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" area-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="nav navbar-nav ms-auto custom-ul">
-                        <li class="nav-item custom-li">
-                            <a href="#" aria-current="page" class="nav-link ">Página inicial</a>
-                        </li>
-                        <li class="nav-item custom-li">
-                            <a href="#" aria-current="page" class="nav-link ">Sobre</a>
-                        </li>
-                    </ul>
-                    <div class="col-6 text-end menu">
-                        <a href="/login.html" class="btn btn-outline-success me-2">Entar</a>
-                        <a href="/signup.html"  class="btn btn-success">Registar</a>
-                    </div>
-                </div>
+<?php
+    require_once("globals.php");
+    require_once("db.php");
 
-            </div>
-        </nav>
-        <!-- Navegation fim -->
-
+?>
         <section id="cover" class="container">
             <div class="row g-2 justify-content-around">
                 <div class="col-md-7 d-flex justify-content-center align-items-center order-lg-2">
@@ -178,24 +136,3 @@
         <!-- Products fim -->
     </main>
     <!-- main fim -->
-
-
-    <!--- footer -->
-    <footer id="footer" class="bg-dark text-center mt-5">
-        <div class="container p-4">
-            <div class="footer-details">
-                <a href="#">
-                    <i class="fas fa-leaf"></i>
-                    <span>AgroCenter</span>
-                </a>
-                <p class="mt-4">Develop with love @ 2022 </p>
-            </div>
-        </div>
-    </footer>
-    <!--- foooter end -->
-
-
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-</body>
-</html>
