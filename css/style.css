@@ -138,6 +138,10 @@ h5 {
     font-weight: 700;
 }
 
+.text-end {
+    border: 1px solid red;
+}
+
 
 @media (max-width: 768px) { 
     .hero-text {
@@ -171,7 +175,7 @@ h5 {
 
 
 .signup {
-    padding-top: 120px;
+    /* padding-top: 120px; */
 }
 
 /*=================== DASHBOARD PAGE ============= */

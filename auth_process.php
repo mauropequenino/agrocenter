@@ -15,7 +15,7 @@
 
     if($type === "signup") {
         
-            $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
             $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $province = filter_input(INPUT_POST, "province", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $city = filter_input(INPUT_POST, "city", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -55,14 +55,14 @@
                         $userDao->create($user, $auth);
 
                     } else {
-                        $message->setMessage("Já existe um usuário com o mesmo nome", "error","back");    
+                        $message->setMessage("Já existe um usuário com o mesmo nome!", "error","back");    
                     }
 
                 } else {
-                    $message->setMessage("Este email já está registado, tente outro email", "error","back");
+                    $message->setMessage("Este email já está registado!", "error","back");
                 }
 
             } else {
-                $message->setMessage("As senhas devem ser iguias", "error", "back");
+                $message->setMessage("As palavras-passes não corrspondem!", "error", "back");
             }   
     }

@@ -12,6 +12,9 @@
         $message->clearMessage();
     }
 
+    $userDao = new UserDao($conn, $BASE_URL);
+    $userData = $userDao->verifyToken(false);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +45,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ms-auto custom-ul">
                         <li class="nav-item custom-li">
                             <a href="#" aria-current="page" class="nav-link ">Página inicial</a>
@@ -52,8 +55,23 @@
                         </li>
                     </ul>
                     <div class="col-6 text-end menu">
-                        <a href="<?= $BASE_URL ?>login.html" class="btn btn-outline-success me-2">Entar</a>
-                        <a href="<?= $BASE_URL ?>signup.php"  class="btn btn-success">Registar</a>
+                        <?php if($userData): ?>
+                            <ul class="navbar-nav custom-ul">
+                                <li class="nav-item custom-li">
+                                    <a class="nav-link" href="<?= $BASE_URL ?>dashboard.php">Dashborad</a>
+                                </li>
+                                <li class="nav-item custom-li ">
+                                    <a class="nav-link" href="<?= $BASE_URL ?>editprofile.php"><?= $userData->name ?></a>
+                                </li>
+                                <li class="nav-item custom-li">
+                                    <a class="nav-link" href="<?= $BASE_URL ?>logout.php">Sair</a>
+                                </li>
+                            </ul>
+                            
+                        <?php else: ?>
+                            <a href="<?= $BASE_URL ?>login.html" class="btn btn-outline-success me-2">Entar</a>
+                            <a href="<?= $BASE_URL ?>signup.php"  class="btn btn-success">Registar</a>
+                        <?php endif; ?>
                     </div>
                 </div>
 

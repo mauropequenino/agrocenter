@@ -48,7 +48,7 @@
 
                         <div class="col-md-12 mt-3">
                             <label for="contacto" class="form-label"><b>Contacto</b></label>
-                            <input type="tel" class="form-control" id="contacto" name="contacto" placeholder="Insira o contacto" required>
+                            <input type="tel" class="form-control" id="contacto" name="phoneNumber" placeholder="Insira o contacto" required>
                         </div>
                     </form>
 

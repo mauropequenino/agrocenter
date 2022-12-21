@@ -28,7 +28,7 @@
             $user->province = $data["province"];
             $user->city = $data["city"];
             $user->email = $data["email"];
-            $user->phoneNumber = $data["phoneNumber"];
+            $user->phoneNumber = $data["phone_number"];
             $user->password = $data["password"];
             $user->image = $data["image"];
             $user->token = $data["token"];
@@ -38,7 +38,7 @@
 
         public function create(User $user, $authUser = false)
         {
-            $stmt =$this->conn->prepare("INSERT INTO users
+            $stmt = $this->conn->prepare("INSERT INTO users
             (
                 name, username, province, city, email, password, token
             ) VALUES (
@@ -67,7 +67,24 @@
         }
 
         public function verifyToken($protected = false){
+            if(!empty($_SESSION["token"])) {
 
+                //Obter o token da session
+                $token = $_SESSION["token"];
+
+                //Verificar o token
+                $user = $this->findByToken($token);
+
+                if($user) {
+                    return $user;
+                }else if($protected) {
+                    //Redicionar para o perfil do página
+                    $this->message->setMessage("Faca a autenticação para acessar está página", "error", "index.php");
+                }
+
+            } else {
+                return false;
+            }
         }
 
         public function setTokenToSession($token, $redirect = true){
@@ -123,7 +140,20 @@
         }
 
         public function findByToken($token){
+            if($token != "") {
+                $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
+                $stmt->bindParam(":token", $token);
+                $stmt->execute();
 
+                if($stmt->rowCount() > 0){
+                    $data = $stmt->fetch();
+                    $user = $this->buildUser($data);
+
+                    return $user;
+                } else {
+                    return false;
+                }
+            }
         }
 
         public function destroyToekn(){

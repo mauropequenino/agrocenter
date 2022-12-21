@@ -15,8 +15,8 @@
                         <hr>
                 
                         <div class="col-md-12">
-                            <label for="nome" class="form-label"><b>Nome</b></label>
-                            <input type="text" class="form-control" id="nome" name="name" placeholder="Insira o nome">
+                            <label for="nome" class="form-label"><b>Nome Completo</b></label>
+                            <input type="text" class="form-control" id="nome" name="name" placeholder="Insira o nome" required>
                         </div>
 
                         <div class="col-md-12 mt-3">
