@@ -56,7 +56,7 @@
                     </ul>
                     <div class="col-6 text-end menu">
                         <?php if($userData): ?>
-                            <ul class="navbar-nav custom-ul">
+                            <ul class="navbar-nav custom-ul text-end">
                                 <li class="nav-item custom-li">
                                     <a class="nav-link" href="<?= $BASE_URL ?>dashboard.php">Dashborad</a>
                                 </li>

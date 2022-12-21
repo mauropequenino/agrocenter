@@ -1,33 +1,48 @@
-<?php require_once("templates/header.php") ?>
-    <section class="container ">
-        <div class="row g-2 justify-content-around">
-            <div class="col-md-12 d-flex justify-content-center align-items-center order-lg-2">
-                <div class="p-3">
-                    <form method="POST" action="<?= $BASE_URL ?>auth_process.php">
+<?php require_once("templates/dashboard-sidemenu.php") ?>
+
+        <div class="col py-3 align-items-center">
+            <h4 class="text-center">Editar perfil</h4>
+            <p class="text-center">Edite o seu perfil alterando os campos abaixo</p>
+            <hr>
+            <div class="p-3 d-flex justify-content-between flex-wrap flex-md-nowrap">
+                <div class="col-md-4">
+                    <form method="POST" action="<?= $BASE_URL ?>auth_process.php" enctype="multipart/form-data">
                         <input type="hidden" name="type" value="signup">
-                        <h4 class="text-center">Editar perfil</h4>
-                        <p class="text-center">Por favor preencha o formulário abaixo para se registar </p>
-                        <hr>
-                
-                        <div class="col-md-12">
-                            <label for="nome" class="form-label"><b>Nome</b></label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Insira o nome" required>
+
+                        <div class="form-group">
+                            <img class="img-fluid" id="profile-image" src="<?= $BASE_URL ?>img/users/<?= $userData->image?>" alt="<?= $userData->name ?>">
+
+                            <h4><?= $userData->name ?></h4>
+
+                            <div class="form-group">
+                                <label for="photo" class="form-label"> <b>Alterar imagem:</b></label>
+                                <input type="file" name="photo" class="form-control-file">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="name" class="form-label"><b>Nome</b></label>
+                            <input type="text" class="form-control" id="nome" name="name" placeholder="Insira o nome" value="<?= $userData->name ?>">
                         </div>
                 
-                        <div class="col-md-12 mt-3">
+                        <div class="form-group mt-3">
                             <label for="nuit" class="form-label"><b>Nuit</b></label>
-                            <input type="text" class="form-control" id="nuit" name="nuit" placeholder="Insira o NUIT" required>
+                            <input type="text" class="form-control" id="nuit" name="nuit" placeholder="Insira o NUIT" value="<?= $userData->nuit ?>">
                         </div>
                 
-                        <div class="col-md-12 mt-3">
+                        <div class="form-group mt-3">
                             <label for="username" class="form-label"><b>Username</b></label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Insira o Username" required>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Insira o Username" value="<?= $userData->username ?>">
                         </div>
+                    </form>
+                </div>
                 
-                        <div class="col-md-8 mt-3">
-                            <label for="provincia" class="form-label"><b>Provincia</b></label>
-                            <select class="form-select w-100" id="provincia" name="provincia" required>
-                                <option selected disabled value="">Escolha a Provincia:</option>
+                <div class="col-md-4">
+
+                <div class="col-md-8 mt-3">
+                            <label for="province" class="form-label"><b>Provincia</b></label>
+                            <select class="form-select w-100" id="province" name="province" required>
+                                <option selected disabled value=""><?= $userData->province ?></option>
                                 <option value="Cabo-Delgado">Cabo Delgado</option>
                                 <option value="Niassa">Niassa</option>
                                 <option value="Nampula">Nampula</option>
@@ -41,50 +56,23 @@
                             </select>
                         </div>
                 
-                        <div class="col-md-12 mt-3">
-                            <label for="cidade" class="form-label"><b>Cidade</b></label>
-                            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Insira a sua cidade " required>
+                        <div class="cform-group mt-3">
+                            <label for="city" class="form-label"><b>Cidade</b></label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Insira a sua cidade" value="<?= $userData->city ?>">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="phoneNumber" class="form-label"><b>Contacto</b></label>
+                            <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Insira o contacto" value="<?= $userData->phoneNumber ?>">
                         </div>
 
                         <div class="col-md-12 mt-3">
-                            <label for="contacto" class="form-label"><b>Contacto</b></label>
-                            <input type="tel" class="form-control" id="contacto" name="phoneNumber" placeholder="Insira o contacto" required>
+                            <label for="bio" class="form-label"> <b>Biografia</b></label>
+                            <textarea type="text" name="bio" class="form-control" id="bio" placeholder="Descreva o Produto"></textarea>
                         </div>
-                    </form>
 
-                    <form method="POST" action="<?= $BASE_URL ?>auth_process.php">
-                        <div class="col-md-12 mt-5">
-                            <h4 class="text-center">Alterar email</h4>
-                            <div class="form-group t-3">
-                                <label for="email" class="form-label"><b>Email</b></label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Insira o email" required>
-                            </div>
-
-                            <div class="form-group mt-3">
-                                <label for="email" class="form-label"><b>Novo email</b></label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Insira o novo email" required>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form method="POST" action="<?= $BASE_URL ?>auth_process.php">
-                        <div class="col-md-12 mt-5">
-                            <h4 class="text-center"> Alterar a palavra-passe</h4>
-                            <div class="form-group mt-3">
-                                <label for="password" class="form-label"><b>Palavra-Passe</b></label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Insira a Palavra-Passe" required>
-                            </div>
-                    
-                            <div class="form-group mt-3">
-                                <label for="password_confirmation" class="form-label"><b>Confirmar a Palavra-Passe</b></label>
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-                            </div>
-                        </div>
-                        <button type=submit class="form-btn btn btn-success w-100 mt-3">Registar Conta</button>
-                    </form>
-        
+                        <button type="submit" class="form-btn btn btn-success w-100 mt-3">Alterar</button>
                 </div>
+              
             </div>
         </div>
-    </section>
-<?php require_once("templates/footer.php") ?>
