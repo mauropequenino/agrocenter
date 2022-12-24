@@ -8,10 +8,11 @@ class User {
     public $province;
     public $city;
     public $email;
-    public $phoneNumber;
+    public $phone_number;
     public $password;
     public $image;
     public $token;
+    public $bio;
 
     public function generateToken() {
         //Converter binario para hexadecimal e gerar uma codigo criptografado de 50 bytes
