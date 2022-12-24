@@ -28,10 +28,11 @@
             $user->province = $data["province"];
             $user->city = $data["city"];
             $user->email = $data["email"];
-            $user->phoneNumber = $data["phone_number"];
+            $user->phone_number = $data["phone_number"];
             $user->password = $data["password"];
             $user->image = $data["image"];
             $user->token = $data["token"];
+            $user->bio = $data["bio"];
 
             return $user;
         }
@@ -63,6 +64,35 @@
         }
 
         public function update(User $user){
+            $stmt = $this->conn->prepare("UPDATE users SET 
+                name = :name,
+                nuit = :nuit,
+                province = :province, 
+                city = :city,
+                phone_number = :phone_number,
+                image = :image,
+                token = :token,
+                bio = :bio   
+
+                WHERE id = :id;
+            ");
+
+            $stmt->bindParam(":name", $user->name);
+            $stmt->bindParam(":nuit", $user->nuit);
+            $stmt->bindParam(":province", $user->province);
+            $stmt->bindParam(":city", $user->city);
+            $stmt->bindParam(":phone_number",$user->phone_number);
+            $stmt->bindParam(":image", $user->image);
+            $stmt->bindParam(":token", $user->token);
+            $stmt->bindParam(":bio", $user->bio);
+            $stmt->bindParam("id", $user->id);
+
+            $stmt->execute();
+
+            //Redicionar para o perfil do usuario
+            $this->message->setMessage("Dados actualizados com sucesso!", "success", "editprofile.php");
+
+            
 
         }
 
