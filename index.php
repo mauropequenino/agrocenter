@@ -1,6 +1,5 @@
 <?php
-    require_once("globals.php");
-    require_once("db.php");
+    require_once("templates/header.php")
 
 ?>
         <section id="cover" class="container">
@@ -136,3 +135,4 @@
         <!-- Products fim -->
     </main>
     <!-- main fim -->
+    <?php require_once("templates/footer.php"); ?>
