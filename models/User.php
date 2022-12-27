@@ -26,7 +26,7 @@ class User {
 
     //Gerar um codigo hexadecimal para salvar a photo do usuario
     public function generateImageName() {
-        return bin2hex(random_bytes(60)) . "jpeg";
+        return bin2hex(random_bytes(60)) . ".jpeg";
     }
 }
 

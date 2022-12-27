@@ -19,11 +19,12 @@
                 <div class="form-group">
                     <img class="img-fluid" id="profile-image" src="<?= $BASE_URL ?>img/users/<?= $userData->image ?>" alt="<?= $userData->name ?>">
 
-                    <h4><?= $userData->name ?></h4>
+                    <h4 class="mt-2"><?= $userData->name ?></h4>
+                    <hr>
 
                     <div class="form-group">
-                        <label for="photo" class="form-label"> <b>Alterar imagem:</b></label>
-                        <input type="file" name="photo" class="form-control-file">
+                        <label for="image" class="form-label"> <b>Alterar imagem:</b></label>
+                        <input type="file" name="image" class="form-control-file">
                     </div>
                 </div>
 
@@ -38,7 +39,7 @@
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="username" class="form-label"><b>Username</b></label>
+                    <label for="username" class="form-label"><b>Nome do usuário</b></label>
                     <input type="text" class="form-control" id="username" name="username" disabled value="<?= $userData->username ?>">
                 </div>
 
