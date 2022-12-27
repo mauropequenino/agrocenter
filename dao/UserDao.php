@@ -107,11 +107,11 @@
 
                 }else if($protected) {
                     //Redicionar para o perfil do página
-                    $this->message->setMessage("Faca a autenticação para acessar está página", "error", "index.php");
+                    $this->message->setMessage("Faça autenticação para acessar está página!", "error", "index.php");
                 }
 
-            } else {
-                $this->message->setMessage("Faca a autenticação para acessar está página", "error", "index.php"); 
+            } else if($protected) {
+                $this->message->setMessage("Faça a autenticação para acessar está página!", "error", "index.php"); 
             }
         }
 

@@ -13,7 +13,7 @@
     }
 
     $userDao = new UserDao($conn, $BASE_URL);
-    $userData = $userDao->verifyToken(false);
+    $userData = $userDao->verifyToken(true);
 
     if($userData->image == "") {
         $userData->image = "user.png";
