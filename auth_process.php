@@ -65,4 +65,16 @@
             } else {
                 $message->setMessage("As palavras-passes não corrspondem!", "error", "back");
             }   
+
+    } else  if($type === "login"){
+        $email = filter_input(INPUT_POST, "email");
+        $password = filter_input(INPUT_POST,"password");
+
+        if($userDao->authenticateUser($email, $password)) {
+            $message->setMessage("Seja Bem-Vindo!", "success","index.php");
+        }else {
+            $message->setMessage("Email e/ou senha incorrectas!", "error", "back");
+        }
+    } else {
+        $message->setMessage("Informações invalídas!", "error", "back");
     }

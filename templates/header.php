@@ -48,10 +48,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="nav navbar-nav ms-auto custom-ul">
                         <li class="nav-item custom-li">
-                            <a href="#" aria-current="page" class="nav-link ">Página inicial</a>
+                            <a href="<?= $BASE_URL ?>index.php" aria-current="page" class="nav-link ">Página inicial</a>
                         </li>
                         <li class="nav-item custom-li">
-                            <a href="#" aria-current="page" class="nav-link ">Sobre</a>
+                            <a href="<?= $BASE_URL ?>sobre.php" aria-current="page" class="nav-link ">Sobre</a>
                         </li>
                     </ul>
                     <div class="col-6 text-end menu">
@@ -69,7 +69,7 @@
                             </ul>
                             
                         <?php else: ?>
-                            <a href="<?= $BASE_URL ?>login.html" class="btn btn-outline-success me-2">Entar</a>
+                            <a href="<?= $BASE_URL ?>login.php" class="btn btn-outline-success me-2">Entar</a>
                             <a href="<?= $BASE_URL ?>signup.php"  class="btn btn-success">Registar</a>
                         <?php endif; ?>
                     </div>

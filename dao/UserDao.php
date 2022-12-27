@@ -63,7 +63,7 @@
             
         }
 
-        public function update(User $user){
+        public function update(User $user) {
             $stmt = $this->conn->prepare("UPDATE users SET 
                 name = :name,
                 nuit = :nuit,
@@ -91,12 +91,9 @@
 
             //Redicionar para o perfil do usuario
             $this->message->setMessage("Dados actualizados com sucesso!", "success", "editprofile.php");
-
-            
-
         }
 
-        public function verifyToken($protected = false){
+        public function verifyToken($protected = false) {
             if(!empty($_SESSION["token"])) {
 
                 //Obter o token da session
@@ -107,18 +104,19 @@
 
                 if($user) {
                     return $user;
+
                 }else if($protected) {
                     //Redicionar para o perfil do página
                     $this->message->setMessage("Faca a autenticação para acessar está página", "error", "index.php");
                 }
 
             } else {
-                return false;
+                $this->message->setMessage("Faca a autenticação para acessar está página", "error", "index.php"); 
             }
         }
 
-        public function setTokenToSession($token, $redirect = true){
-            //Guarfar token na session
+        public function setTokenToSession($token, $redirect = true) {
+            //Guardar token na session
             $_SESSION["token"] = $token;
 
             if($redirect) {
@@ -127,12 +125,30 @@
             }
         }
 
-        public function authenticateUser($email, $password){
+        public function authenticateUser($email, $password) {
+            $user = $this->findByEmail($email);
 
+            if($user) {
+                //verificar se as senhas sao iguais
+                if(password_verify($password, $user->password)) {
+
+                    //Gerar uma token para criar a session
+                    $token = $user->generateToken();
+                    $this->setTokenToSession($token, false);
+
+                    //Actualizar o token do usuario
+                    $user->token = $token;
+                    $this->update($user, false);
+
+                    return true;
+                }
+            } else {
+                return false;
+            }
         }
 
-        public function findByEmail($email){
-            if($email != ""){
+        public function findByEmail($email) {
+            if($email != "") {
                 $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
 
                 $stmt->bindParam(":email", $email);
@@ -145,6 +161,8 @@
                 } else {
                     return false;
                 }
+            } else {
+                return false;
             }
         }
 
@@ -162,6 +180,8 @@
                 } else {
                     return false;
                 }
+            }else {
+                return false;
             }
         }
 
@@ -169,7 +189,7 @@
 
         }
 
-        public function findByToken($token){
+        public function findByToken($token) {
             if($token != "") {
                 $stmt = $this->conn->prepare("SELECT * FROM users WHERE token = :token");
                 $stmt->bindParam(":token", $token);
@@ -183,10 +203,12 @@
                 } else {
                     return false;
                 }
+            } else {
+                return false;
             }
         }
 
-        public function destroyToekn(){
+        public function destroyToekn() {
             //remove o token da session
             $_SESSION["token"] = "";
 
