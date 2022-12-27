@@ -32,6 +32,9 @@
      <link rel="stylesheet" href="<?= $BASE_URL ?>css/style.css">
      <!----font awesome---->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css">
+
+     <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -61,12 +64,12 @@
                             <span class="d-none d-sm-inline mx-1"><?= $userData->name ?></span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                            <li><a class="dropdown-item" href="<?= $BASE_URL ?>editprofile.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="<?= $BASE_URL ?>editprofile.php">Editar perfil</a></li>
                             <li><a class="dropdown-item" href="<?= $BASE_URL ?>changepassword.php">Alterar senha</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Sair</a></li>
+                            <li><a class="dropdown-item" href="<?= $BASE_URL ?>logout.php">Sair</a></li>
                         </ul>
                     </div>
                 </div>

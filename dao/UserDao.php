@@ -187,7 +187,11 @@
         }
 
         public function destroyToekn(){
+            //remove o token da session
+            $_SESSION["token"] = "";
 
+            //Redicionar e mostrar a messagem de sucesso
+            $this->message->setMessage("Volte sempre!", "success", "index.php");
         }
 
         public function changePassword(User $user){
