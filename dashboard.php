@@ -1,4 +1,11 @@
-<?php require_once("templates/dashboard-sidemenu.php") ?>
+<?php 
+  
+  require_once("templates/dashboard-sidemenu.php");
+  require_once("dao/ProductDao.php");
+
+  $productDao = new ProductDao($conn, $BASE_URL);
+  $userProducts = $productDao->getProductsByUserId($userData->id);
+?>
             <div class="col py-3">
                 <div class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
                     <div
@@ -6,7 +13,7 @@
                       <h1 class="h2">Dashboard</h1>
                       <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group me-2">
-                          <a href="newproduct.html" class="btn btn-sm btn-success">+ Adicionar produto</a>
+                          <a href="<?= $BASE_URL ?>newproduct.php" class="btn btn-sm btn-success">+ Adicionar produto</a>
                         </div>
                       </div>
                     </div>
@@ -20,20 +27,25 @@
                             <th scope="col">Imagem</th>
                             <th scope="col">Descricao</th>
                             <th scope="col">Categoria</th>
-                            <th scope="col">Quantidade</th>
+                            <th scope="col">Unit/Medida</th>
                             <th scope="col">Preco</th>
+                            <th scope="col">Data inicial</th>
+                            <th scope="col">Data final</th>
                             <th scope="col" class="actions-column">Ações</th>
                             
                           </tr>
                         </thead>
                         <tbody>
+                          <?php foreach ($userProducts as $products): ?>
                           <tr>
-                            <td>1</td>
-                            <td><img src="/IMGS/cebola.jpg" width="50px" height="50px" style="object-fit: cover;"></td>
-                            <td>data</td>
-                            <td>placeholder</td>
-                            <td>text</td>
-                            <td>placeholder</td>
+                            <td><?= $products->id ?></td>
+                            <td><img src="<? $BASE_URL ?>img/products/<?= $products->image ?>" width="50px" height="50px" style="object-fit: cover;"></td>
+                            <td><?= $products->description ?></td>
+                            <td><?= $products->category ?></td>
+                            <td><?= $products->unit ?></td>
+                            <td><?= $products->price ?></td>
+                            <td><?= $products->date_start ?></td>
+                            <td><?= $products->date_end ?></td>
                             <td class="actions-column d-flex justify-content-center  pb-3">
                                 <a href="#" class="btn btn-warning"><i class="far fa-edit"></i></a>
                                 <form action="" class="ms-2" method="POST">
@@ -43,6 +55,7 @@
                                 </form>
                             </td>
                           </tr>
+                          <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
@@ -51,7 +64,5 @@
         </div>
     </div>
 
-      <!-- JavaScript Bundle with Popper -->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
