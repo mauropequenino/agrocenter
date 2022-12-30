@@ -3,7 +3,8 @@
 require_once("models/Product.php");
 require_once("models/Message.php");
 
-class ProductDao implements ProductDaoInterface {
+class ProductDao implements ProductDaoInterface
+{
 
     private $conn;
     private $url;
@@ -16,7 +17,8 @@ class ProductDao implements ProductDaoInterface {
         $this->message = new Message($url);
     }
 
-    public function buildProduct($data) {
+    public function buildProduct($data)
+    {
         $product = new Product();
 
         $product->id = $data["id"];
@@ -36,25 +38,26 @@ class ProductDao implements ProductDaoInterface {
         return $product;
     }
 
-    public function getLatestProducts() {
-
+    public function getLatestProducts()
+    {
     }
 
-    public function getProductsByCategory($category) {
-
+    public function getProductsByCategory($category)
+    {
     }
 
-    public function getProductsByUserId($id) {
+    public function getProductsByUserId($id)
+    {
         $products = [];
 
         $stmt = $this->conn->prepare("SELECT * FROM products WHERE users_id = :users_id");
         $stmt->bindParam(":users_id", $id);
         $stmt->execute();
 
-        if($stmt->rowCount() > 0) {
+        if ($stmt->rowCount() > 0) {
             $productArr = $stmt->fetchAll();
 
-            foreach($productArr as $product) {
+            foreach ($productArr as $product) {
                 $products[] = $this->buildProduct($product);
             }
         }
@@ -62,19 +65,36 @@ class ProductDao implements ProductDaoInterface {
         return $products;
     }
 
-    public function findById($id) {
+    public function findById($id)
+    {
+        $products = [];
 
+        $stmt = $this->conn->prepare("SELECT * FROM products WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $productData = $stmt->fetch();
+
+            $product = $this->buildProduct($productData);
+            return $product;
+        } else {
+            return false;
+        }
+
+        return $products;
     }
 
-    public function findByTitle($title) {
-
+    public function findByTitle($title)
+    {
     }
 
-    public function findAll() {
-
+    public function findAll()
+    {
     }
 
-    public function create(Product $product) {
+    public function create(Product $product)
+    {
         $stmt = $this->conn->prepare("INSERT INTO products (
             product_name, category, price, unit, sold_off, date_start, date_end, province, city, description, image, users_id) VALUES (
                 :product_name, :category, :price, :unit, :sold_off, :date_start, :date_end, :province, :city, :description, :image, :users_id
@@ -98,11 +118,47 @@ class ProductDao implements ProductDaoInterface {
         $this->message->setMessage("Producto adicionado com sucesso", "success", "dashboard.php");
     }
 
-    public function update(Product $product) {
+    public function update(Product $product)
+    {
+        $stmt = $this->conn->prepare("UPDATE products SET
+            product_name = :product_name,
+            category = :category,
+            price = :price, 
+            unit = :unit,
+            sold_off = :sold_off, 
+            date_start = :date_start,
+            date_end = :date_end,
+            province = :province,
+            city = :city, 
+            description = :description,
+            image = :image
+            WHERE id = :id
+        ");
 
+        $stmt->bindParam("product_name", $product->product_name);
+        $stmt->bindParam("category", $product->category);
+        $stmt->bindParam("price", $product->price);
+        $stmt->bindParam("unit", $product->unit);
+        $stmt->bindParam("sold_off", $product->sold_off);
+        $stmt->bindParam("date_start", $product->date_start);
+        $stmt->bindParam("date_end", $product->date_end);
+        $stmt->bindParam("province", $product->province);
+        $stmt->bindParam("city", $product->city);
+        $stmt->bindParam("description", $product->description);
+        $stmt->bindParam("image", $product->image);
+        $stmt->bindParam("id", $product->id);
+
+        $stmt->execute();
+
+        $this->message->setMessage("Producto actualizado com sucesso!", "success", "dashboard.php");
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM products WHERE id = :id");
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
 
+        $this->message->setMessage("Producto removido com sucesso!", "success", "dashboard.php");
     }
 }
