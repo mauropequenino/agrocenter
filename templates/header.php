@@ -56,17 +56,16 @@
                     </ul>
                     <div class="col-6 text-end menu">
                         <?php if($userData): ?>
-                            <ul class="navbar-nav custom-ul text-end">
-                                <li class="nav-item custom-li">
+                            <ul class="navbar-nav">
+                                <li class="nav-item ">
                                     <a class="nav-link" href="<?= $BASE_URL ?>dashboard.php">Dashborad</a>
                                 </li>
-                                <li class="nav-item custom-li ">
-                                    <a class="nav-link" href="<?= $BASE_URL ?>editprofile.php"><?= $userData->name ?></a>
-                                </li>
-                                <li class="nav-item custom-li">
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?= $BASE_URL ?>logout.php">Sair</a>
                                 </li>
                             </ul>
+                            
+                            
                             
                         <?php else: ?>
                             <a href="<?= $BASE_URL ?>login.php" class="btn btn-outline-success me-2">Entar</a>
