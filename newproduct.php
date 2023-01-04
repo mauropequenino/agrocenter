@@ -1,11 +1,13 @@
 <?php require_once("templates/dashboard-sidemenu.php") ?>
-<div class="col-md-8 py-3">
-    <div class="col-md-12 ms-sm-auto col-lg-12 px-md-4 mt-2">
-        <h4>Adicione um produto a montra</h4>
-        <p>Por favor preencha o formulário abaixo para e clique em gravar</p>
+<div class="col offset-2">
+    <div class="col-md-12 ms-sm-auto col-lg-12 px-md-4 mt-4">
+        <div class="text-center">
+            <h4>Adicione um produto a montra</h4>
+            <p>Por favor preencha o formulário abaixo para e clique em gravar</p>
+        </div>
         <hr>
         <form method="post" action="<?= $BASE_URL ?>product_process.php" enctype="multipart/form-data">
-        <input type=="">"hidden" name="type" value="create">
+            <input type="hidden" name="type" value="create">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap border-bottom">
                 <div class="column-1 me-5">
                     <div class="col-md-12 mt-3">
@@ -44,7 +46,7 @@
                         </select>
                     </div>
 
-                    <div class="col-md-12 mt-3">             
+                    <div class="col-md-12 mt-3">
                         <label for="sold_off" class="form-label"><b>Esgotado</b></label>
                         <input type="checkbox" id="sold_off" name="sold_off" value="0">
                     </div>
