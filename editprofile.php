@@ -1,13 +1,15 @@
 <?php require_once("templates/dashboard-sidemenu.php") ?>
 
-<div class="col py-3 align-items-center">
-    <h4 class="text-center">Editar perfil</h4>
-    <p class="text-center">Edite o seu perfil alterando os campos abaixo</p>
+<div class="col offset-2 align-items-center mt-4">
+    <div class="text-center">
+        <h4>Editar perfil</h4>
+        <p>Edite o seu perfil alterando os campos abaixo</p>
+    </div>
     <hr>
 
-    <?php if(!empty($flassMessage["msg"])): ?>
+    <?php if (!empty($flassMessage["msg"])) : ?>
         <div class="msg-container">
-            <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"]?></p>
+            <p class="msg <?= $flassMessage["type"] ?>"><?= $flassMessage["msg"] ?></p>
         </div>
     <?php endif ?>
 
