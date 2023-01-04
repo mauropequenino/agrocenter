@@ -1,5 +1,9 @@
 <?php
-    require_once("templates/header.php")
+    require_once("templates/header.php");
+    require_once("dao/ProductDao.php");
+
+    $productDao = new ProductDao($conn, $BASE_URL);
+    $lastestProducts = $productDao->getLatestProducts();
 
 ?>
         <section id="cover" class="container">
@@ -46,90 +50,9 @@
         <section id="products" class="mt-5">
             <h3 class="product-category-title">Vegetais</h3>
             <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card h-100 shadow custom-card">
-                        <img src="img/products/tomate.jpg" class="card-img-top w-100 custom-bg" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">Tomate</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, rem.</p>
-                            <a href="#" class="custom-user">
-                                <i class="fas fa-user"></i>
-                                <span>Big Farm Maputo</span>
-                            </a>
-                        </div>
-                        <div class="card-footer custom-footer">
-                            <div class="float-start">
-                                <h4 class="custom-highlight">500.00/kg</h4>
-                            </div>
-                            <div class="float-end">
-                                <button class="btn btn-primary rounded-3 custom-btn"><i class="fas fa-shopping-cart"></i> Ver</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100 shadow custom-card">
-                        <img src="img/products/tomate.jpg" class="card-img-top w-100 custom-bg" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">Tomate</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, rem.</p>
-                            <a href="#" class="custom-user">
-                                <i class="fas fa-user"></i>
-                                <span>Big Farm Maputo</span>
-                            </a>
-                        </div>
-                        <div class="card-footer custom-footer">
-                            <div class="float-start">
-                                <h4 class="custom-highlight">500.00/kg</h4>
-                            </div>
-                            <div class="float-end">
-                                <button class="btn btn-primary rounded-3 custom-btn"><i class="fas fa-shopping-cart"></i> Ver</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100 shadow custom-card">
-                        <img src="img/products/couve-flor.jpg" class="card-img-top w-100 custom-bg" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">Tomate</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, rem.</p>
-                            <a href="#" class="custom-user">
-                                <i class="fas fa-user"></i>
-                                <span>Big Farm Maputo</span>
-                            </a>
-                        </div>
-                        <div class="card-footer custom-footer">
-                            <div class="float-start">
-                                <h4 class="custom-highlight">500.00/kg</h4>
-                            </div>
-                            <div class="float-end">
-                                <button class="btn btn-primary rounded-3 custom-btn"><i class="fas fa-shopping-cart"></i> Ver</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100 shadow custom-card">
-                        <img src="img/products/tomate.jpg" class="card-img-top w-100 custom-bg" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">Tomate</h4>
-                            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam, rem.</p>
-                            <a href="#" class="custom-user">
-                                <i class="fas fa-user"></i>
-                                <span>Big Farm Maputo</span>
-                            </a>
-                        </div>
-                        <div class="card-footer custom-footer">
-                            <div class="float-start">
-                                <h4 class="custom-highlight">500.00/kg</h4>
-                            </div>
-                            <div class="float-end">
-                                <button class="btn btn-primary rounded-3 custom-btn"><i class="fas fa-shopping-cart"></i> Ver</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php foreach ($lastestProducts as $product): ?>
+                    <?php require("templates/product-card.php"); ?>
+                <?php endforeach; ?>
             </div>
         </section>
         <!-- Products fim -->
