@@ -28,6 +28,10 @@ class User {
     public function generateImageName() {
         return bin2hex(random_bytes(60)) . ".jpeg";
     }
+
+    public function verifyPassword($password, $hash) {
+        return password_verify($password, $hash);
+    }
 }
 
 interface UserDaoInterface {
@@ -41,5 +45,6 @@ interface UserDaoInterface {
     public function findId($id);
     public function findByToken($token);
     public function destroyToekn();
+    public function changeEmail(User $user);
     public function changePassword(User $user);
 }

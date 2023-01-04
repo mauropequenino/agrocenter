@@ -216,7 +216,33 @@
             $this->message->setMessage("Volte sempre!", "success", "index.php");
         }
 
-        public function changePassword(User $user){
+        public function changeEmail(User $user) {
+            $stmt = $this->conn->prepare("UPDATE users SET 
+                email = :email
+                WHERE id = :id;
+            ");
 
+            $stmt->bindParam(":email", $user->email);
+            $stmt->bindParam(":id", $user->id);
+
+            $stmt->execute();
+
+            //Redirecionar e mostrar a messagem de sucesso
+            $this->message->setMessage("Seu email foi alterado com sucesso!", "success", "credentials.php");
+        }
+
+        public function changePassword(User $user){
+            $stmt = $this->conn->prepare("UPDATE users SET 
+                password = :password
+                WHERE id = :id;
+            ");
+
+            $stmt->bindParam(":password", $user->password);
+            $stmt->bindParam(":id", $user->id);
+
+            $stmt->execute();
+
+            //Redirecionar e mostrar a messagem de sucesso
+            $this->message->setMessage("Palavra-passe alterada com sucesso!", "success", "credentials.php");
         }
     }

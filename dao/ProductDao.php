@@ -40,6 +40,21 @@ class ProductDao implements ProductDaoInterface
 
     public function getLatestProducts()
     {
+
+        $products = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM products ORDER BY id DESC");
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $productArr = $stmt->fetchAll();
+
+            foreach ($productArr as $product) {
+                $products[] = $this->buildProduct($product);
+            }
+        }
+
+        return $products;
     }
 
     public function getProductsByCategory($category)

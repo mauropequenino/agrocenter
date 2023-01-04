@@ -35,7 +35,7 @@ if ($type === "update") {
     $userData->bio = $bio;
 
     //Verificar se existe um valor na base de dados, para evitar alterão por um null
-    if(empty($userData->province)) {
+    if (empty($userData->province)) {
         $userData->province = $province;
     }
 
@@ -67,6 +67,55 @@ if ($type === "update") {
     }
 
     $userDao->update($userData);
+
+} else if ($type === "changeEmail") {
+
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+
+    //vericar se o email fai registado
+    if ($userDao->findByEmail($email) === false) {
+
+        //Obter os dados do usuario
+        $userData = $userDao->verifyToken();
+        $id = $userData->id;
+
+        $user = new User();
+        $user->email = $email;
+        $user->id = $id;
+
+        $userDao->changeEmail($user);
+    } else {
+        $message->setMessage("Este email já está registado!", "error","back");
+    }
+
+} else if ($type === "changePassword") {
+
+    $current_password = filter_input(INPUT_POST, "current_password");
+    $new_password = filter_input(INPUT_POST, "new_password");
+    $confirm_password = filter_input(INPUT_POST, "confirm_password");
+
+    //Obter os dados do usuario
+    $userData = $userDao->verifyToken();
+    $hash = $userData->password;
+    $id = $userData->id;
+
+    $user = new User();
+
+    if ($user->verifyPassword($current_password, $hash)) {
+        if ($new_password === $confirm_password) {
+
+            $finalPassword = $user->generatePassword($new_password);
+
+            $user->password = $finalPassword;
+            $user->id = $id;
+
+            $userDao->changePassword($user);
+        } else {
+            $message->setMessage("A nova palavra-passe e palavra-passe de confirmação não correspondem!", "error", "back");
+        }
+    } else {
+        $message->setMessage("Por favor, digite a sua palavra-passe actual!", "error", "back");
+    }
 } else {
     $message->setMessage("Informacoes invalidas!", "error", "back");
 }
